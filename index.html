@@ -20,23 +20,21 @@
             min-height: 100vh;
         }
 
-        /* Pantalla principal - scroll normal */
+        /* Pantalla principal */
         #mainScreen {
             max-width: 500px;
             margin: 0 auto;
+            padding-top: 8px;
             padding-bottom: 90px;
         }
 
-        /* Header fijo arriba */
+        /* Header principal */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 16px;
+            padding: 16px 16px 12px 16px;
             background: #1a1a2e;
-            position: sticky;
-            top: 0;
-            z-index: 100;
         }
         .header-left {
             display: flex;
@@ -45,9 +43,9 @@
         }
         .icono-dinero {
             background: #2ecc71;
-            width: 38px;
-            height: 38px;
-            border-radius: 19px;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -64,9 +62,9 @@
         .config-btn {
             background: rgba(255,255,255,0.1);
             border: none;
-            width: 38px;
-            height: 38px;
-            border-radius: 19px;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
             font-size: 18px;
             cursor: pointer;
             display: flex;
@@ -76,7 +74,7 @@
         }
         .config-btn:active { background: rgba(255,255,255,0.2); }
 
-        /* Reloj flotante */
+        /* Reloj */
         .reloj-flotante {
             background: linear-gradient(135deg, #16213e, #0f0f2a);
             border-radius: 24px;
@@ -88,7 +86,7 @@
         .hora-actual { font-size: 44px; font-weight: bold; color: white; letter-spacing: 2px; font-family: monospace; }
         .fecha-actual { font-size: 14px; color: #a0a0a0; margin-top: 8px; }
 
-        /* Navegador semanas flotante */
+        /* Navegador semanas */
         .week-nav {
             display: flex;
             justify-content: space-between;
@@ -159,7 +157,7 @@
         .btn-turno.completado { background: rgba(46,204,113,0.3); color: #2ecc71; }
         .btn-turno:active { transform: scale(0.96); }
 
-        /* Tarjeta de turno activo (grande) */
+        /* Tarjeta de turno activo */
         .turno-activo-card {
             background: linear-gradient(135deg, #2ecc71, #27ae60);
             border-radius: 28px;
@@ -238,7 +236,7 @@
         }
         .fab-left:active, .fab-right:active { transform: scale(0.96); }
 
-        /* Modales */
+        /* Modales - CORREGIDOS */
         .modal {
             display: none;
             position: fixed;
@@ -253,29 +251,39 @@
         .modal-header {
             display: flex;
             align-items: center;
+            justify-content: center;
+            position: relative;
             padding: 16px;
             background: #1a1a2e;
-            position: sticky;
-            top: 0;
-            z-index: 201;
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         .modal-header .back-btn {
-            background: none;
+            position: absolute;
+            left: 16px;
+            background: rgba(255,255,255,0.1);
             border: none;
-            font-size: 28px;
+            font-size: 20px;
             color: white;
             cursor: pointer;
-            width: 44px;
-            height: 44px;
-            border-radius: 22px;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-        .modal-header .back-btn:active { background: rgba(255,255,255,0.1); }
-        .modal-header h3 { color: white; font-size: 18px; flex: 1; text-align: center; }
-        .modal-content { padding: 20px; max-width: 500px; margin: 0 auto; }
+        .modal-header .back-btn:active { background: rgba(255,255,255,0.2); }
+        .modal-header h3 {
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .modal-content {
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
 
         /* Selector rueda */
         .wheel-picker {
@@ -316,13 +324,13 @@
         .dia-checkbox {
             display: flex;
             align-items: center;
-            gap: 8px;
+            justify-content: center;
             background: rgba(255,255,255,0.05);
             padding: 10px;
             border-radius: 12px;
         }
-        .dia-checkbox input { width: 20px; height: 20px; cursor: pointer; }
-        .dia-checkbox label { color: white; font-size: 13px; flex: 1; text-align: center; }
+        .dia-checkbox input { width: 18px; height: 18px; margin-right: 6px; cursor: pointer; }
+        .dia-checkbox label { color: white; font-size: 13px; cursor: pointer; }
 
         /* Opciones recurrencia */
         .recurrencia-opciones {
@@ -395,12 +403,24 @@
         /* Botones generales */
         .btn-guardar { background: #2ecc71; color: white; }
         .btn-cancelar { background: #e74c3c; color: white; }
+        .btn-peligro { background: #e74c3c; color: white; }
         .btn-agregar {
             background: #2ecc71;
             border: none;
             padding: 14px;
             border-radius: 16px;
             color: white;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        .btn-limpiar {
+            background: rgba(231,76,60,0.2);
+            border: 1px solid #e74c3c;
+            padding: 12px;
+            border-radius: 16px;
+            color: #e74c3c;
             font-weight: bold;
             width: 100%;
             margin-top: 20px;
@@ -461,7 +481,6 @@
     <div class="modal-header">
         <button class="back-btn" id="closeCalendarioBtn">←</button>
         <h3>Calendario</h3>
-        <div style="width: 44px;"></div>
     </div>
     <div class="modal-content">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
@@ -470,6 +489,7 @@
             <button id="nextMonthBtn" style="background:rgba(255,255,255,0.1); border:none; padding:8px 16px; border-radius:30px; color:white;">→</button>
         </div>
         <div class="calendario-grid" id="calendarioGrid"></div>
+        <button class="btn-limpiar" id="limpiarAntiguosBtn">🗑️ Limpiar turnos antiguos</button>
     </div>
 </div>
 
@@ -478,7 +498,6 @@
     <div class="modal-header">
         <button class="back-btn" id="closeDiaBtn">←</button>
         <h3 id="diaModalTitulo"></h3>
-        <div style="width: 44px;"></div>
     </div>
     <div class="modal-content">
         <div id="turnosDiaLista"></div>
@@ -489,9 +508,8 @@
 <!-- Modal Nuevo/Editar Turno -->
 <div class="modal" id="turnoModal">
     <div class="modal-header">
-        <div style="width: 44px;"></div>
+        <button class="back-btn" id="cancelarTurnoBtn">←</button>
         <h3 id="turnoModalTitulo">Nuevo turno</h3>
-        <button class="back-btn" id="cancelarTurnoBtn" style="position: static;">✕</button>
     </div>
     <div class="modal-content">
         <input type="text" id="turnoNombre" placeholder="Nombre del turno" style="width:100%; padding:14px; background:rgba(255,255,255,0.1); border-radius:16px; color:white; margin-bottom:15px; border:none;">
@@ -529,6 +547,22 @@
     </div>
 </div>
 
+<!-- Modal limpiar turnos antiguos -->
+<div class="modal" id="limpiarModal">
+    <div class="modal-header">
+        <button class="back-btn" id="closeLimpiarBtn">←</button>
+        <h3>Limpiar turnos antiguos</h3>
+    </div>
+    <div class="modal-content">
+        <p style="color:white; margin-bottom:20px;">Eliminar todos los turnos anteriores a:</p>
+        <input type="date" id="fechaLimite" style="width:100%; padding:14px; background:rgba(255,255,255,0.1); border-radius:16px; color:white; margin-bottom:20px; border:none;">
+        <div class="modal-buttons">
+            <button class="btn-cancelar" id="cancelarLimpiarBtn">Cancelar</button>
+            <button class="btn-peligro" id="confirmarLimpiarBtn">Eliminar</button>
+        </div>
+    </div>
+</div>
+
 <script>
     // CONSTANTES
     const DIAS_SEMANA = [
@@ -541,8 +575,6 @@
         { id: "domingo", nombre: "Domingo", abbr: "Dom" }
     ];
     const MESES = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
-    const HORAS = Array.from({length: 24}, (_, i) => i.toString().padStart(2, '0'));
-    const MINUTOS = Array.from({length: 60}, (_, i) => i.toString().padStart(2, '0'));
 
     // DATOS
     let config = {
@@ -559,7 +591,6 @@
     let descansoActual = false;
     let semanaOffset = 0;
     let currentMonth = new Date();
-    let fechaSeleccionadaModal = new Date().toISOString().split('T')[0];
     let recurrenciaActual = "hoy";
     let turnoEditandoId = null;
 
@@ -611,11 +642,11 @@
     }
 
     function guardarDatos() {
-        localStorage.setItem('controlLaboralV11', JSON.stringify({ registros, turnoActivo, config }));
+        localStorage.setItem('controlLaboralV14', JSON.stringify({ registros, turnoActivo, config }));
     }
 
     function cargarDatos() {
-        let saved = localStorage.getItem('controlLaboralV11');
+        let saved = localStorage.getItem('controlLaboralV14');
         if (saved) {
             let data = JSON.parse(saved);
             registros = data.registros || [];
@@ -674,6 +705,17 @@
         actualizarUI();
     }
 
+    function limpiarTurnosAntiguos(fechaLimite) {
+        let fechaLimiteObj = new Date(fechaLimite);
+        let antes = registros.length;
+        registros = registros.filter(r => new Date(r.fecha) >= fechaLimiteObj);
+        let despues = registros.length;
+        guardarDatos();
+        actualizarUI();
+        alert(`Se eliminaron ${antes - despues} turnos anteriores a ${fechaLimite}`);
+        return antes - despues;
+    }
+
     function guardarRegistro(turnoId, fecha, entrada, salida, descanso, esEdicion = false, registroId = null) {
         let turno = config.turnos.find(t => t.id === turnoId);
         if (!turno) return;
@@ -701,6 +743,10 @@
         }
         guardarDatos();
         actualizarUI();
+        let calendarioModal = document.getElementById('calendarioModal');
+        if (calendarioModal.style.display === 'flex') {
+            renderizarCalendario();
+        }
     }
 
     function deberiaEstarActivo(turno, fechaStr) {
@@ -808,7 +854,6 @@
     }
 
     function abrirModalNuevoTurno(fechaStr, turnoId = null) {
-        fechaSeleccionadaModal = fechaStr;
         document.getElementById('turnoModalTitulo').textContent = 'Nuevo turno';
         document.getElementById('turnoNombre').value = '';
         document.getElementById('turnoInicio').value = '08:00';
@@ -839,7 +884,6 @@
     }
 
     function abrirModalEditarRegistro(registro) {
-        fechaSeleccionadaModal = registro.fecha;
         document.getElementById('turnoModalTitulo').textContent = 'Editar turno';
         document.getElementById('turnoNombre').value = registro.turnoNombre;
         document.getElementById('turnoInicio').value = registro.entrada;
@@ -862,7 +906,6 @@
 
     function abrirModalTurnoParaEditarEntrada() {
         if (!turnoActivo) return;
-        fechaSeleccionadaModal = turnoActivo.fecha;
         document.getElementById('turnoModalTitulo').textContent = 'Modificar hora entrada';
         document.getElementById('turnoNombre').value = turnoActivo.turnoNombre;
         document.getElementById('turnoInicio').value = turnoActivo.horaEntrada;
@@ -988,7 +1031,10 @@
         }
         
         document.querySelectorAll('.calendario-dia[data-fecha]').forEach(el => {
-            el.onclick = () => abrirModalDia(el.dataset.fecha);
+            el.onclick = () => {
+                document.getElementById('calendarioModal').style.display = 'none';
+                abrirModalDia(el.dataset.fecha);
+            };
         });
     }
 
@@ -1032,6 +1078,7 @@
         cargarDatos();
         setInterval(() => actualizarUI(), 1000);
         
+        // Eventos pantalla principal
         document.getElementById('statsBtn').onclick = () => alert('Estadísticas próximamente');
         document.getElementById('configBtn').onclick = () => alert('Configuración próximamente');
         document.getElementById('prevWeekBtn').onclick = () => { semanaOffset--; actualizarUI(); };
@@ -1039,6 +1086,7 @@
         document.getElementById('calendarioBtn').onclick = () => { renderizarCalendario(); document.getElementById('calendarioModal').style.display = 'flex'; };
         document.getElementById('agregarBtn').onclick = () => abrirModalNuevoTurno(formatearFechaYMD(new Date()));
         
+        // Eventos modales
         document.getElementById('closeCalendarioBtn').onclick = () => document.getElementById('calendarioModal').style.display = 'none';
         document.getElementById('closeDiaBtn').onclick = () => document.getElementById('diaModal').style.display = 'none';
         document.getElementById('cancelarTurnoBtn').onclick = () => document.getElementById('turnoModal').style.display = 'none';
@@ -1051,10 +1099,12 @@
             container.style.display = container.style.display === 'none' ? 'flex' : 'none';
         };
         
+        // Recurrencia
         document.getElementById('recurrenciaHoy').onclick = function() { recurrenciaActual='hoy'; document.querySelectorAll('.recurrencia-opciones button').forEach(b=>b.classList.remove('selected')); this.classList.add('selected'); };
         document.getElementById('recurrenciaSemana').onclick = function() { recurrenciaActual='semana'; document.querySelectorAll('.recurrencia-opciones button').forEach(b=>b.classList.remove('selected')); this.classList.add('selected'); };
         document.getElementById('recurrenciaMes').onclick = function() { recurrenciaActual='mes'; document.querySelectorAll('.recurrencia-opciones button').forEach(b=>b.classList.remove('selected')); this.classList.add('selected'); };
         
+        // Días semana grid
         let diasGrid = document.getElementById('diasSemanaGrid');
         DIAS_SEMANA.forEach(dia => {
             let div = document.createElement('div');
@@ -1063,7 +1113,27 @@
             diasGrid.appendChild(div);
         });
         
-        [HORAS, MINUTOS].forEach(() => {});
+        // Limpiar turnos antiguos
+        document.getElementById('limpiarAntiguosBtn').onclick = () => {
+            let hoy = new Date();
+            let fechaDefecto = `${hoy.getFullYear()}-${(hoy.getMonth()+1).toString().padStart(2,'0')}-01`;
+            document.getElementById('fechaLimite').value = fechaDefecto;
+            document.getElementById('limpiarModal').style.display = 'flex';
+        };
+        document.getElementById('closeLimpiarBtn').onclick = () => document.getElementById('limpiarModal').style.display = 'none';
+        document.getElementById('cancelarLimpiarBtn').onclick = () => document.getElementById('limpiarModal').style.display = 'none';
+        document.getElementById('confirmarLimpiarBtn').onclick = () => {
+            let fecha = document.getElementById('fechaLimite').value;
+            if (fecha) {
+                if (confirm(`¿Eliminar todos los turnos anteriores a ${fecha}?`)) {
+                    limpiarTurnosAntiguos(fecha);
+                    document.getElementById('limpiarModal').style.display = 'none';
+                    if (document.getElementById('calendarioModal').style.display === 'flex') {
+                        renderizarCalendario();
+                    }
+                }
+            }
+        };
     }
     
     init();
