@@ -20,42 +20,21 @@
             min-height: 100vh;
         }
 
+        /* Pantalla principal */
         #mainScreen {
             max-width: 500px;
             margin: 0 auto;
             padding-top: 8px;
-            padding-bottom: 90px;
+            padding-bottom: 30px;
         }
 
+        /* Header */
         .header {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end;
             align-items: center;
             padding: 16px 16px 12px 16px;
             background: #1a1a2e;
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .icono-dinero {
-            background: #2ecc71;
-            width: 40px;
-            height: 40px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-        }
-        .header h1 {
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
         }
         .config-btn {
             background: rgba(255,255,255,0.1);
@@ -63,7 +42,7 @@
             width: 40px;
             height: 40px;
             border-radius: 20px;
-            font-size: 18px;
+            font-size: 20px;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -72,6 +51,7 @@
         }
         .config-btn:active { background: rgba(255,255,255,0.2); }
 
+        /* Reloj flotante */
         .reloj-flotante {
             background: linear-gradient(135deg, #16213e, #0f0f2a);
             border-radius: 24px;
@@ -83,75 +63,55 @@
         .hora-actual { font-size: 44px; font-weight: bold; color: white; letter-spacing: 2px; font-family: monospace; }
         .fecha-actual { font-size: 14px; color: #a0a0a0; margin-top: 8px; }
 
-        .week-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 16px;
-            margin: 0 16px 20px 16px;
-            background: rgba(30,30,46,0.95);
-            border-radius: 40px;
-            backdrop-filter: blur(10px);
-        }
-        .week-nav button {
-            background: rgba(255,255,255,0.15);
-            border: none;
-            padding: 8px 14px;
-            border-radius: 30px;
-            color: white;
-            font-size: 13px;
-            cursor: pointer;
-        }
-        .week-nav button:active { background: rgba(255,255,255,0.25); }
-        .week-nav h3 { color: white; font-size: 14px; font-weight: 500; }
-
-        .dias-container {
+        /* Contenedor de trabajos */
+        .trabajos-container {
             padding: 0 16px;
         }
-        .dia-section {
-            margin-bottom: 24px;
-        }
-        .dia-titulo {
-            color: #2ecc71;
-            font-size: 17px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .turno-card {
+        .trabajo-card {
             background: rgba(255,255,255,0.05);
-            border-radius: 18px;
-            padding: 14px;
-            margin-bottom: 10px;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 12px;
         }
-        .turno-info { flex: 1; }
-        .turno-nombre { font-size: 15px; font-weight: 600; color: white; }
-        .turno-horario { font-size: 12px; color: #a0a0a0; margin-top: 3px; }
-        .turno-detalle { font-size: 11px; color: #2ecc71; margin-top: 3px; }
-        
-        .turno-actions { display: flex; gap: 8px; }
-        .btn-turno {
+        .trabajo-info {
+            flex: 2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .trabajo-emoji {
+            font-size: 32px;
+        }
+        .trabajo-nombre {
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+        }
+        .trabajo-actions {
+            display: flex;
+            gap: 12px;
+        }
+        .btn-trabajo {
             background: rgba(255,255,255,0.1);
             border: none;
-            padding: 8px 14px;
+            padding: 10px 16px;
             border-radius: 30px;
             color: white;
-            font-size: 12px;
+            font-size: 14px;
             cursor: pointer;
             font-weight: 500;
         }
-        .btn-turno.pendiente { background: rgba(52,152,219,0.3); color: #3498db; }
-        .btn-turno.completado { background: rgba(46,204,113,0.3); color: #2ecc71; }
-        .btn-turno:active { transform: scale(0.96); }
+        .btn-trabajo.entrar { background: rgba(52,152,219,0.3); color: #3498db; }
+        .btn-trabajo.calendario { background: rgba(46,204,113,0.2); color: #2ecc71; }
+        .btn-trabajo:active { transform: scale(0.96); }
 
-        .turno-activo-card {
+        /* Tarjeta de jornada activa */
+        .jornada-activa-card {
             background: linear-gradient(135deg, #2ecc71, #27ae60);
             border-radius: 28px;
             padding: 20px;
@@ -164,9 +124,8 @@
             70% { transform: scale(1.01); box-shadow: 0 0 0 10px rgba(46,204,113,0); }
             100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(46,204,113,0); }
         }
-        .turno-activo-card .turno-nombre { font-size: 20px; font-weight: bold; color: white; margin-bottom: 6px; }
-        .turno-activo-card .turno-horario { font-size: 13px; color: rgba(255,255,255,0.9); margin-bottom: 12px; }
-        .turno-activo-card .tiempo-transcurrido { font-size: 38px; font-weight: bold; color: white; font-family: monospace; margin: 12px 0; }
+        .jornada-activa-card .trabajo-nombre { font-size: 22px; font-weight: bold; color: white; margin-bottom: 8px; }
+        .tiempo-transcurrido { font-size: 38px; font-weight: bold; color: white; font-family: monospace; margin: 12px 0; }
         .descanso-check { margin: 12px 0; display: flex; align-items: center; justify-content: center; gap: 10px; color: white; }
         .descanso-check input { width: 20px; height: 20px; cursor: pointer; }
         .btn-modificar-hora {
@@ -193,41 +152,27 @@
         }
         .btn-finalizar:active, .btn-modificar-hora:active { background: rgba(0,0,0,0.5); transform: scale(0.98); }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; background: rgba(255,255,255,0.05); }
-            50% { opacity: 0.7; background: rgba(231,76,60,0.2); }
+        /* Mensaje vacío */
+        .mensaje-vacio {
+            text-align: center;
+            color: #a0a0a0;
+            padding: 40px 20px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 20px;
+            margin: 20px 16px;
         }
-        .turno-parpadeante { animation: blink 1s infinite; }
-
-        .fab-left, .fab-right {
-            position: fixed;
-            bottom: 20px;
-            width: 56px;
-            height: 56px;
-            border-radius: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            cursor: pointer;
-            z-index: 100;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-        .fab-left {
-            left: 20px;
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white;
-        }
-        .fab-right {
-            right: 20px;
+        .mensaje-vacio p { margin-bottom: 16px; }
+        .btn-primario {
             background: #2ecc71;
             border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
             color: white;
+            font-weight: bold;
+            cursor: pointer;
         }
-        .fab-left:active, .fab-right:active { transform: scale(0.96); }
 
-        /* MODALES SIMPLIFICADOS - SIN HEADER */
+        /* Modales */
         .modal {
             display: none;
             position: fixed;
@@ -240,12 +185,29 @@
             overflow-y: auto;
         }
         .modal-content {
-            padding: 40px;
+            padding: 20px;
             max-width: 500px;
             margin: 0 auto;
         }
-        .btn-cerrar-modal {
-            background: #e74c3c;
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .modal-header h3 { color: white; font-size: 20px; }
+        .modal-header .back-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            color: white;
+        }
+        .cerrar-modal-btn {
+            background: rgba(255,255,255,0.1);
             border: none;
             padding: 14px;
             border-radius: 16px;
@@ -256,6 +218,42 @@
             cursor: pointer;
         }
 
+        /* Calendario grid */
+        .calendario-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 6px;
+            margin-top: 20px;
+        }
+        .calendario-dia-header {
+            text-align: center;
+            color: #a0a0a0;
+            font-size: 11px;
+            padding: 8px 4px;
+        }
+        .calendario-dia {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 10px 4px;
+            text-align: center;
+            cursor: pointer;
+            min-height: 65px;
+        }
+        .calendario-dia .numero { color: white; font-size: 14px; font-weight: bold; }
+        .calendario-dia .horas { font-size: 11px; color: #2ecc71; margin-top: 4px; }
+        .calendario-dia.other-month { opacity: 0.3; }
+
+        /* Formularios */
+        input, select {
+            width: 100%;
+            padding: 14px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 16px;
+            color: white;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
         .wheel-picker {
             display: flex;
             justify-content: center;
@@ -284,113 +282,6 @@
         }
         .wheel-scroll div.selected { background: #2ecc71; border-radius: 8px; }
 
-        .dias-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            margin: 15px 0;
-        }
-        .dia-checkbox {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.05);
-            padding: 10px;
-            border-radius: 12px;
-        }
-        .dia-checkbox input { width: 18px; height: 18px; margin-right: 6px; cursor: pointer; }
-        .dia-checkbox label { color: white; font-size: 13px; cursor: pointer; }
-
-        .recurrencia-opciones {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0;
-        }
-        .recurrencia-opciones button {
-            flex: 1;
-            background: rgba(255,255,255,0.1);
-            border: none;
-            padding: 12px;
-            border-radius: 16px;
-            color: white;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        .recurrencia-opciones button.selected { background: #2ecc71; }
-
-        .calendario-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
-            margin-top: 20px;
-        }
-        .calendario-dia-header {
-            text-align: center;
-            color: #a0a0a0;
-            font-size: 11px;
-            padding: 8px 4px;
-        }
-        .calendario-dia {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 10px 4px;
-            text-align: center;
-            cursor: pointer;
-        }
-        .calendario-dia .numero { color: white; font-size: 14px; font-weight: bold; }
-        .calendario-dia .punto {
-            width: 6px;
-            height: 6px;
-            border-radius: 3px;
-            margin: 5px auto 0;
-        }
-        .calendario-dia .punto.verde { background: #2ecc71; }
-        .calendario-dia .punto.verde-claro { background: #a8e6cf; }
-        .calendario-dia.other-month { opacity: 0.3; }
-
-        .turno-dia-item {
-            background: rgba(255,255,255,0.05);
-            border-radius: 16px;
-            padding: 12px;
-            margin-bottom: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .btn-eliminar-turno {
-            background: none;
-            border: none;
-            font-size: 20px;
-            color: #e74c3c;
-            cursor: pointer;
-            padding: 8px;
-        }
-
-        .btn-guardar { background: #2ecc71; color: white; }
-        .btn-cancelar { background: #e74c3c; color: white; }
-        .btn-peligro { background: #e74c3c; color: white; }
-        .btn-agregar {
-            background: #2ecc71;
-            border: none;
-            padding: 14px;
-            border-radius: 16px;
-            color: white;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-        .btn-limpiar {
-            background: rgba(231,76,60,0.2);
-            border: 1px solid #e74c3c;
-            padding: 12px;
-            border-radius: 16px;
-            color: #e74c3c;
-            font-weight: bold;
-            width: 100%;
-            margin-top: 20px;
-            cursor: pointer;
-        }
         .modal-buttons {
             display: flex;
             gap: 12px;
@@ -404,20 +295,88 @@
             cursor: pointer;
             font-weight: bold;
         }
+        .btn-guardar { background: #2ecc71; color: white; }
+        .btn-cancelar { background: #e74c3c; color: white; }
 
-        input, select {
-            font-size: 16px;
+        /* Jornada item */
+        .jornada-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
+        .jornada-info { flex: 1; }
+        .jornada-fecha { font-weight: bold; color: white; }
+        .jornada-horas { font-size: 12px; color: #2ecc71; margin-top: 4px; }
+        .jornada-actions { display: flex; gap: 8px; }
+        .btn-icon {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .btn-editar { color: #f39c12; }
+        .btn-eliminar { color: #e74c3c; }
+
+        /* Lista de trabajos en configuración */
+        .trabajo-config-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .trabajo-config-info { flex: 1; }
+        .trabajo-config-info .nombre { font-size: 18px; font-weight: bold; color: white; }
+        .trabajo-config-info .stats { font-size: 12px; color: #2ecc71; margin-top: 4px; }
+        .trabajo-config-actions { display: flex; gap: 8px; }
+        .config-icon {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 20px;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-agregar {
+            background: rgba(46,204,113,0.2);
+            border: 1px dashed #2ecc71;
+            padding: 14px;
+            border-radius: 16px;
+            color: #2ecc71;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 16px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .valores-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin: 15px 0;
+        }
+        .valor-item label { color: #a0a0a0; font-size: 12px; display: block; margin-bottom: 6px; }
     </style>
 </head>
 <body>
 
+<!-- Pantalla principal -->
 <div id="mainScreen">
     <div class="header">
-        <div class="header-left">
-            <div class="icono-dinero" id="statsBtn">$</div>
-        </div>
-        <h1>Control Laboral</h1>
         <button class="config-btn" id="configBtn">⚙️</button>
     </div>
 
@@ -426,140 +385,146 @@
         <div class="fecha-actual" id="fechaActual">---</div>
     </div>
 
-    <div class="week-nav">
-        <button id="prevWeekBtn">← Semana</button>
-        <h3 id="weekTitle"></h3>
-        <button id="nextWeekBtn">Semana →</button>
+    <div id="jornadaActivaContainer"></div>
+
+    <div class="trabajos-container" id="trabajosContainer"></div>
+</div>
+
+<!-- Modal Configuración -->
+<div class="modal" id="configModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="back-btn" id="closeConfigBtn">←</button>
+            <h3>Configuración</h3>
+            <div style="width: 40px;"></div>
+        </div>
+        <div id="trabajosConfigLista"></div>
+        <button class="btn-agregar" id="agregarTrabajoBtn">+ Agregar trabajo</button>
     </div>
+</div>
 
-    <div id="turnoActivoContainer"></div>
-
-    <div class="dias-container" id="diasContainer"></div>
-
-    <button class="fab-left" id="calendarioBtn">📅</button>
-    <button class="fab-right" id="agregarBtn">+</button>
+<!-- Modal Editar Trabajo -->
+<div class="modal" id="editarTrabajoModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button class="back-btn" id="closeEditarTrabajoBtn">←</button>
+            <h3 id="editarTrabajoTitulo">Editar trabajo</h3>
+            <div style="width: 40px;"></div>
+        </div>
+        <input type="text" id="trabajoNombre" placeholder="Nombre del trabajo">
+        <input type="text" id="trabajoEmoji" placeholder="Emoji (ej: 🏢, 🏭, 🏪)" maxlength="2">
+        
+        <h4 style="color:white; margin:15px 0 10px;">💰 Valores por hora</h4>
+        <div class="valores-grid">
+            <div class="valor-item"><label>Hora normal (€)</label><input type="number" id="valorNormal" step="0.01"></div>
+            <div class="valor-item"><label>Hora nocturna (€)</label><input type="number" id="valorNocturno" step="0.01"></div>
+            <div class="valor-item"><label>Extra diurna (€)</label><input type="number" id="valorExtraDiurno" step="0.01"></div>
+            <div class="valor-item"><label>Extra nocturna (€)</label><input type="number" id="valorExtraNocturno" step="0.01"></div>
+        </div>
+        
+        <h4 style="color:white; margin:15px 0 10px;">⚙️ Reglas</h4>
+        <select id="reglaDescanso">
+            <option value="pago">Descanso pagado (no marcar = +0.5h extra)</option>
+            <option value="no_pago">Descanso no pagado (marcar = -0.5h)</option>
+        </select>
+        <input type="number" id="jornadaLegal" step="0.5" placeholder="Jornada legal (horas)" value="6">
+        
+        <div class="modal-buttons">
+            <button class="btn-cancelar" id="cancelarEditarTrabajoBtn">Cancelar</button>
+            <button class="btn-guardar" id="guardarEditarTrabajoBtn">Guardar</button>
+        </div>
+    </div>
 </div>
 
 <!-- Modal Calendario -->
 <div class="modal" id="calendarioModal">
     <div class="modal-content">
+        <div class="modal-header">
+            <button class="back-btn" id="closeCalendarioBtn">←</button>
+            <h3 id="calendarioTitulo"></h3>
+            <div style="width: 40px;"></div>
+        </div>
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <button id="prevMonthBtn" style="background:rgba(255,255,255,0.1); border:none; padding:8px 16px; border-radius:30px; color:white;">←</button>
             <h3 id="mesTitulo" style="color:white;"></h3>
             <button id="nextMonthBtn" style="background:rgba(255,255,255,0.1); border:none; padding:8px 16px; border-radius:30px; color:white;">→</button>
         </div>
         <div class="calendario-grid" id="calendarioGrid"></div>
-        <button class="btn-limpiar" id="limpiarAntiguosBtn">🗑️ Limpiar turnos antiguos</button>
-        <button class="btn-cerrar-modal" id="closeCalendarioBtn">Cerrar</button>
+        <button class="cerrar-modal-btn" id="cerrarCalendarioBtn">Cerrar</button>
     </div>
 </div>
 
-<!-- Modal Día -->
+<!-- Modal Día (jornadas del día) -->
 <div class="modal" id="diaModal">
     <div class="modal-content">
-        <h3 id="diaModalTitulo" style="color:white; margin-bottom:20px; text-align:center;"></h3>
-        <div id="turnosDiaLista"></div>
-        <button class="btn-agregar" id="agregarTurnoDiaBtn">+ Agregar turno</button>
-        <button class="btn-cerrar-modal" id="closeDiaBtn">Cerrar</button>
+        <div class="modal-header">
+            <button class="back-btn" id="closeDiaBtn">←</button>
+            <h3 id="diaModalTitulo"></h3>
+            <div style="width: 40px;"></div>
+        </div>
+        <div id="jornadasDiaLista"></div>
+        <button class="btn-agregar" id="agregarJornadaDiaBtn">+ Agregar jornada</button>
     </div>
 </div>
 
-<!-- Modal Nuevo/Editar Turno -->
-<div class="modal" id="turnoModal">
+<!-- Modal Editar Jornada -->
+<div class="modal" id="editarJornadaModal">
     <div class="modal-content">
-        <h3 id="turnoModalTitulo" style="color:white; margin-bottom:20px; text-align:center;">Nuevo turno</h3>
-        <input type="text" id="turnoNombre" placeholder="Nombre del turno" style="width:100%; padding:14px; background:rgba(255,255,255,0.1); border-radius:16px; color:white; margin-bottom:15px; border:none;">
-        
-        <div style="display: flex; gap: 12px; margin-bottom: 15px;">
-            <input type="time" id="turnoInicio" style="flex:1; padding:14px; background:rgba(255,255,255,0.1); border-radius:16px; color:white; border:none;">
-            <input type="time" id="turnoFin" style="flex:1; padding:14px; background:rgba(255,255,255,0.1); border-radius:16px; color:white; border:none;">
+        <div class="modal-header">
+            <button class="back-btn" id="closeEditarJornadaBtn">←</button>
+            <h3>Editar jornada</h3>
+            <div style="width: 40px;"></div>
         </div>
-
-        <button id="cambiarFechaBtn" style="background:rgba(255,255,255,0.1); border:none; padding:12px; border-radius:16px; color:white; width:100%; margin-bottom:15px;">📅 Cambiar fecha</button>
-        <div id="fechaPickerContainer" style="display: none;">
-            <div class="wheel-picker">
-                <div class="wheel-column"><label>Día</label><div class="wheel-scroll" id="diaScroll"></div></div>
-                <div class="wheel-column"><label>Mes</label><div class="wheel-scroll" id="mesScroll"></div></div>
-                <div class="wheel-column"><label>Año</label><div class="wheel-scroll" id="añoScroll"></div></div>
-            </div>
+        <div class="wheel-picker">
+            <div class="wheel-column"><label>Hora entrada</label><div class="wheel-scroll" id="entradaHoraScroll"></div></div>
+            <div class="wheel-column"><label>Min entrada</label><div class="wheel-scroll" id="entradaMinScroll"></div></div>
         </div>
-
+        <div class="wheel-picker">
+            <div class="wheel-column"><label>Hora salida</label><div class="wheel-scroll" id="salidaHoraScroll"></div></div>
+            <div class="wheel-column"><label>Min salida</label><div class="wheel-scroll" id="salidaMinScroll"></div></div>
+        </div>
         <div style="margin: 15px 0;">
-            <label style="color:white; display:flex; align-items:center; gap:10px;"><input type="checkbox" id="descansoCheck"> Realicé media hora de descanso</label>
+            <label style="color:white; display:flex; align-items:center; gap:10px;"><input type="checkbox" id="editarDescansoCheck"> Realicé media hora de descanso</label>
         </div>
-
-        <div class="dias-grid" id="diasSemanaGrid"></div>
-
-        <div class="recurrencia-opciones">
-            <button id="recurrenciaHoy" class="selected">Solo hoy</button>
-            <button id="recurrenciaSemana">Esta semana</button>
-            <button id="recurrenciaMes">Todo el mes</button>
-        </div>
-
         <div class="modal-buttons">
-            <button class="btn-cancelar" id="cancelarTurnoModalBtn">Cancelar</button>
-            <button class="btn-guardar" id="guardarTurnoBtn">Guardar</button>
-        </div>
-    </div>
-</div>
-
-<!-- Modal limpiar turnos antiguos -->
-<div class="modal" id="limpiarModal">
-    <div class="modal-content">
-        <h3 style="color:white; margin-bottom:20px; text-align:center;">Limpiar turnos antiguos</h3>
-        <p style="color:white; margin-bottom:20px;">Eliminar todos los turnos anteriores a:</p>
-        <input type="date" id="fechaLimite" style="width:100%; padding:14px; background:rgba(255,255,255,0.1); border-radius:16px; color:white; margin-bottom:20px; border:none;">
-        <div class="modal-buttons">
-            <button class="btn-cancelar" id="cancelarLimpiarBtn">Cancelar</button>
-            <button class="btn-peligro" id="confirmarLimpiarBtn">Eliminar</button>
+            <button class="btn-cancelar" id="cancelarEditarJornadaBtn">Cancelar</button>
+            <button class="btn-guardar" id="guardarEditarJornadaBtn">Guardar</button>
         </div>
     </div>
 </div>
 
 <script>
-    const DIAS_SEMANA = [
-        { id: "lunes", nombre: "Lunes", abbr: "Lun" },
-        { id: "martes", nombre: "Martes", abbr: "Mar" },
-        { id: "miercoles", nombre: "Miércoles", abbr: "Mié" },
-        { id: "jueves", nombre: "Jueves", abbr: "Jue" },
-        { id: "viernes", nombre: "Viernes", abbr: "Vie" },
-        { id: "sabado", nombre: "Sábado", abbr: "Sáb" },
-        { id: "domingo", nombre: "Domingo", abbr: "Dom" }
-    ];
+    // DATOS INICIALES VACÍOS
+    let trabajos = [];
+    let jornadaActiva = null;
+    let descansoActual = false;
+    let trabajoEditandoId = null;
+    let jornadaEditando = null;
+    let trabajoCalendarioActual = null;
+    let currentMonth = new Date();
+
+    // Constantes
+    const HORAS = Array.from({length: 24}, (_, i) => i.toString().padStart(2, '0'));
+    const MINUTOS = Array.from({length: 60}, (_, i) => i.toString().padStart(2, '0'));
+    const DIAS_SEMANA = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
     const MESES = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 
-    let config = {
-        salarioDiurno: 12, salarioNocturno: 15, extraDiurno: 18, extraNocturno: 22, jornadaLegal: 6,
-        turnos: [
-            { id: "manana", nombre: "Mañana", inicio: "06:00", fin: "12:00", dias: ["lunes","martes","miercoles","jueves","viernes"] },
-            { id: "tarde", nombre: "Tarde", inicio: "12:00", fin: "18:00", dias: ["lunes","martes","miercoles","jueves","viernes"] },
-            { id: "vespertino", nombre: "Vespertino", inicio: "18:00", fin: "00:00", dias: ["lunes","martes","miercoles","jueves","viernes"] },
-            { id: "noche", nombre: "Noche", inicio: "00:00", fin: "06:00", dias: ["lunes","martes","miercoles","jueves","viernes","sabado","domingo"] }
-        ]
-    };
-    let registros = [];
-    let turnoActivo = null;
-    let descansoActual = false;
-    let semanaOffset = 0;
-    let currentMonth = new Date();
-    let recurrenciaActual = "hoy";
-    let turnoEditandoId = null;
-
-    function getDiaIdFromDate(date) {
-        const dias = ["domingo", "lunes", "martes", "miercoles", "jueves", "viernes", "sabado"];
-        return dias[date.getDay()];
+    // Guardar y cargar datos
+    function guardarDatos() {
+        localStorage.setItem('controlLaboralV20', JSON.stringify({ trabajos, jornadaActiva }));
     }
 
-    function getInicioSemana(fecha) {
-        const dia = fecha.getDay();
-        const inicio = new Date(fecha);
-        inicio.setDate(fecha.getDate() - (dia === 0 ? 6 : dia - 1));
-        return inicio;
+    function cargarDatos() {
+        let saved = localStorage.getItem('controlLaboralV20');
+        if (saved) {
+            let data = JSON.parse(saved);
+            trabajos = data.trabajos || [];
+            jornadaActiva = data.jornadaActiva || null;
+        }
+        actualizarUI();
     }
 
-    function formatearFecha(fecha) { return `${fecha.getDate().toString().padStart(2,'0')}/${(fecha.getMonth()+1).toString().padStart(2,'0')}`; }
-    function formatearFechaYMD(fecha) { return `${fecha.getFullYear()}-${(fecha.getMonth()+1).toString().padStart(2,'0')}-${fecha.getDate().toString().padStart(2,'0')}`; }
-
+    // Clasificar horas (diurnas/nocturnas)
     function clasificarHoras(inicioStr, finStr) {
         let [iH, iM] = inicioStr.split(':').map(Number);
         let [fH, fM] = finStr.split(':').map(Number);
@@ -575,365 +540,238 @@
         return { diurnas: diurnas / 60, nocturnas: nocturnas / 60 };
     }
 
-    function calcularHorasRegistro(entrada, salida, descanso) {
+    // Calcular horas de una jornada
+    function calcularJornada(trabajo, entrada, salida, descanso) {
         let { diurnas, nocturnas } = clasificarHoras(entrada, salida);
         let total = diurnas + nocturnas;
         let normalesDiurnas = diurnas, normalesNocturnas = nocturnas, extraDiurnas = 0, extraNocturnas = 0;
-        if (!descanso) total += 0.5;
-        if (total > config.jornadaLegal) {
-            let extra = total - config.jornadaLegal;
+        
+        if (trabajo.reglaDescanso === "pago") {
+            if (!descanso) total += 0.5;
+        } else {
+            if (descanso) total -= 0.5;
+        }
+        
+        let jornadaLegal = trabajo.jornadaLegal || 6;
+        if (total > jornadaLegal) {
+            let extra = total - jornadaLegal;
             let propDiurna = diurnas / (diurnas + nocturnas) || 0;
             extraDiurnas = extra * propDiurna;
             extraNocturnas = extra * (1 - propDiurna);
             normalesDiurnas = diurnas - extraDiurnas;
             normalesNocturnas = nocturnas - extraNocturnas;
         }
-        return { total, normalesDiurnas, normalesNocturnas, extraDiurnas, extraNocturnas };
+        
+        let totalPagar = (normalesDiurnas * (trabajo.valorNormal || 12)) +
+                         (normalesNocturnas * (trabajo.valorNocturno || 15)) +
+                         (extraDiurnas * (trabajo.valorExtraDiurno || 18)) +
+                         (extraNocturnas * (trabajo.valorExtraNocturno || 22));
+        
+        return { total: total.toFixed(1), totalPagar: totalPagar.toFixed(2), normalesDiurnas, normalesNocturnas, extraDiurnas, extraNocturnas };
     }
 
-    function guardarDatos() {
-        localStorage.setItem('controlLaboralV19', JSON.stringify({ registros, turnoActivo, config }));
-    }
-
-    function cargarDatos() {
-        let saved = localStorage.getItem('controlLaboralV19');
-        if (saved) {
-            let data = JSON.parse(saved);
-            registros = data.registros || [];
-            turnoActivo = data.turnoActivo || null;
-            if (data.config) config = { ...config, ...data.config };
-        }
-        actualizarUI();
-    }
-
-    function iniciarTurno(turnoId, fechaStr, horaEntrada = null) {
-        let turno = config.turnos.find(t => t.id === turnoId);
-        if (!turno) return;
-        let entrada = horaEntrada || turno.inicio;
-        turnoActivo = {
-            turnoId: turnoId,
-            turnoNombre: turno.nombre,
-            turnoHorario: `${turno.inicio} - ${turno.fin}`,
-            horaEntrada: entrada,
-            fecha: fechaStr,
-            timestamp: Date.now()
+    // Iniciar jornada
+    function iniciarJornada(trabajoId) {
+        let trabajo = trabajos.find(t => t.id === trabajoId);
+        if (!trabajo) return;
+        let ahora = new Date();
+        jornadaActiva = {
+            trabajoId: trabajoId,
+            trabajoNombre: trabajo.nombre,
+            trabajoEmoji: trabajo.emoji,
+            horaEntrada: ahora.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' }),
+            fecha: ahora.toISOString().split('T')[0],
+            timestamp: ahora.getTime()
         };
         descansoActual = false;
         guardarDatos();
         actualizarUI();
     }
 
-    function finalizarTurno(descanso) {
-        if (!turnoActivo) return;
+    // Finalizar jornada
+    function finalizarJornada() {
+        if (!jornadaActiva) return;
+        let trabajo = trabajos.find(t => t.id === jornadaActiva.trabajoId);
+        if (!trabajo) return;
         let ahora = new Date();
         let salida = ahora.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' });
-        let { total, normalesDiurnas, normalesNocturnas, extraDiurnas, extraNocturnas } = 
-            calcularHorasRegistro(turnoActivo.horaEntrada, salida, descanso);
-        let nuevoRegistro = {
+        let calculo = calcularJornada(trabajo, jornadaActiva.horaEntrada, salida, descansoActual);
+        
+        let nuevaJornada = {
             id: Date.now(),
-            fecha: turnoActivo.fecha,
-            turnoId: turnoActivo.turnoId,
-            turnoNombre: turnoActivo.turnoNombre,
-            entrada: turnoActivo.horaEntrada,
+            fecha: jornadaActiva.fecha,
+            entrada: jornadaActiva.horaEntrada,
             salida: salida,
-            diurnas: normalesDiurnas,
-            nocturnas: normalesNocturnas,
-            extraDiurnas: extraDiurnas,
-            extraNocturnas: extraNocturnas,
-            total: total,
-            descanso: descanso
+            descanso: descansoActual,
+            total: parseFloat(calculo.total),
+            totalPagar: parseFloat(calculo.totalPagar),
+            diurnas: calculo.normalesDiurnas,
+            nocturnas: calculo.normalesNocturnas,
+            extraDiurnas: calculo.extraDiurnas,
+            extraNocturnas: calculo.extraNocturnas
         };
-        registros.unshift(nuevoRegistro);
-        turnoActivo = null;
-        guardarDatos();
-        actualizarUI();
-    }
-
-    function eliminarRegistro(id) {
-        registros = registros.filter(r => r.id !== id);
-        guardarDatos();
-        actualizarUI();
-    }
-
-    function limpiarTurnosAntiguos(fechaLimite) {
-        let fechaLimiteObj = new Date(fechaLimite);
-        let antes = registros.length;
-        registros = registros.filter(r => new Date(r.fecha) >= fechaLimiteObj);
-        guardarDatos();
-        actualizarUI();
-        alert(`Se eliminaron ${antes - registros.length} turnos anteriores a ${fechaLimite}`);
-    }
-
-    function guardarRegistro(turnoId, fecha, entrada, salida, descanso, esEdicion = false, registroId = null) {
-        let turno = config.turnos.find(t => t.id === turnoId);
-        if (!turno) return;
-        let { total, normalesDiurnas, normalesNocturnas, extraDiurnas, extraNocturnas } = 
-            calcularHorasRegistro(entrada, salida, descanso);
-        let nuevoRegistro = {
-            id: esEdicion ? registroId : Date.now(),
-            fecha: fecha,
-            turnoId: turnoId,
-            turnoNombre: turno.nombre,
-            entrada: entrada,
-            salida: salida,
-            diurnas: normalesDiurnas,
-            nocturnas: normalesNocturnas,
-            extraDiurnas: extraDiurnas,
-            extraNocturnas: extraNocturnas,
-            total: total,
-            descanso: descanso
-        };
-        if (esEdicion) {
-            let idx = registros.findIndex(r => r.id === registroId);
-            if (idx !== -1) registros[idx] = nuevoRegistro;
-        } else {
-            registros.unshift(nuevoRegistro);
-        }
-        guardarDatos();
-        actualizarUI();
-    }
-
-    function deberiaEstarActivo(turno, fechaStr) {
-        let hoy = new Date();
-        let fechaTurno = new Date(fechaStr);
-        if (fechaTurno.toDateString() !== hoy.toDateString()) return false;
-        let ahora = hoy.getHours() * 60 + hoy.getMinutes();
-        let [inicioH, inicioM] = turno.inicio.split(':').map(Number);
-        let [finH, finM] = turno.fin.split(':').map(Number);
-        let inicioMin = inicioH * 60 + inicioM;
-        let finMin = finH * 60 + finM;
-        if (finMin <= inicioMin) finMin += 24 * 60;
-        return ahora >= inicioMin && ahora < finMin;
-    }
-
-    function actualizarUI() {
-        let ahora = new Date();
-        document.getElementById('horaActual').textContent = ahora.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
-        document.getElementById('fechaActual').textContent = ahora.toLocaleDateString('es-ES', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-
-        let activoContainer = document.getElementById('turnoActivoContainer');
-        if (turnoActivo) {
-            let diff = Date.now() - turnoActivo.timestamp;
-            let horas = Math.floor(diff/3600000);
-            let minutos = Math.floor((diff%3600000)/60000);
-            let segundos = Math.floor((diff%60000)/1000);
-            activoContainer.innerHTML = `
-                <div class="turno-activo-card">
-                    <div class="turno-nombre">${turnoActivo.turnoNombre}</div>
-                    <div class="turno-horario">${turnoActivo.turnoHorario}</div>
-                    <div class="tiempo-transcurrido">${horas.toString().padStart(2,'0')}:${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2,'0')}</div>
-                    <div class="descanso-check"><input type="checkbox" id="descansoActivoCheck"><label>Realicé media hora de descanso</label></div>
-                    <div><button class="btn-modificar-hora" id="modificarEntradaBtn">📝 Modificar hora entrada</button></div>
-                    <div><button class="btn-finalizar" id="finalizarActivoBtn">🏁 Finalizar turno</button></div>
-                </div>
-            `;
-            let descansoCheck = document.getElementById('descansoActivoCheck');
-            if (descansoCheck) descansoCheck.addEventListener('change', (e) => descansoActual = e.target.checked);
-            document.getElementById('modificarEntradaBtn')?.addEventListener('click', () => abrirModalTurnoParaEditarEntrada());
-            document.getElementById('finalizarActivoBtn')?.addEventListener('click', () => finalizarTurno(descansoActual));
-        } else {
-            activoContainer.innerHTML = '';
-        }
-
-        let hoy = new Date();
-        let inicioSemana = getInicioSemana(new Date(hoy.getTime() + semanaOffset * 7 * 86400000));
-        let finSemana = new Date(inicioSemana);
-        finSemana.setDate(inicioSemana.getDate() + 6);
-        document.getElementById('weekTitle').innerHTML = `${formatearFecha(inicioSemana)} - ${formatearFecha(finSemana)}`;
-
-        let container = document.getElementById('diasContainer');
-        container.innerHTML = '';
-        for (let i = 0; i < 7; i++) {
-            let fecha = new Date(inicioSemana);
-            fecha.setDate(inicioSemana.getDate() + i);
-            let diaId = getDiaIdFromDate(fecha);
-            let fechaStr = formatearFechaYMD(fecha);
-            let turnosDia = config.turnos.filter(t => t.dias.includes(diaId));
-            let registrosDia = registros.filter(r => r.fecha === fechaStr);
-            
-            let diaDiv = document.createElement('div');
-            diaDiv.className = 'dia-section';
-            diaDiv.innerHTML = `<div class="dia-titulo">${DIAS_SEMANA.find(d => d.id === diaId).nombre} ${formatearFecha(fecha)}</div>`;
-            
-            turnosDia.forEach(turno => {
-                let registroExistente = registrosDia.find(r => r.turnoId === turno.id);
-                let estado = registroExistente ? 'completado' : 'pendiente';
-                let debeParpadear = !registroExistente && deberiaEstarActivo(turno, fechaStr) && !turnoActivo;
-                let horasStr = registroExistente ? `${registroExistente.total.toFixed(1)}h` : '';
-                let extras = registroExistente && (registroExistente.extraDiurnas+registroExistente.extraNocturnas) > 0 ? ` (+${(registroExistente.extraDiurnas+registroExistente.extraNocturnas).toFixed(1)})` : '';
-                
-                let card = document.createElement('div');
-                card.className = `turno-card ${debeParpadear ? 'turno-parpadeante' : ''}`;
-                card.innerHTML = `
-                    <div class="turno-info">
-                        <div class="turno-nombre">${turno.nombre}</div>
-                        <div class="turno-horario">${turno.inicio} - ${turno.fin}</div>
-                        <div class="turno-detalle">${horasStr}${extras}</div>
-                    </div>
-                    <div class="turno-actions">
-                        ${estado === 'completado' ? 
-                            `<button class="btn-turno completado" data-fecha="${fechaStr}" data-turnoid="${turno.id}" data-tipo="editar">✏️ Editar</button>` :
-                            `<button class="btn-turno pendiente" data-fecha="${fechaStr}" data-turnoid="${turno.id}" data-tipo="entrar">▶ Entrar</button>`
-                        }
-                    </div>
-                `;
-                diaDiv.appendChild(card);
-            });
-            container.appendChild(diaDiv);
-        }
-
-        document.querySelectorAll('.btn-turno').forEach(btn => {
-            btn.onclick = () => {
-                let fecha = btn.dataset.fecha;
-                let turnoId = btn.dataset.turnoid;
-                let tipo = btn.dataset.tipo;
-                if (tipo === 'entrar') abrirModalNuevoTurno(fecha, turnoId);
-                else {
-                    let registro = registros.find(r => r.fecha === fecha && r.turnoId === turnoId);
-                    if (registro) abrirModalEditarRegistro(registro);
-                }
-            };
-        });
-    }
-
-    function abrirModalNuevoTurno(fechaStr, turnoId = null) {
-        document.getElementById('turnoModalTitulo').textContent = 'Nuevo turno';
-        document.getElementById('turnoNombre').value = '';
-        document.getElementById('turnoInicio').value = '08:00';
-        document.getElementById('turnoFin').value = '17:00';
-        document.getElementById('descansoCheck').checked = false;
-        recurrenciaActual = 'hoy';
-        document.querySelectorAll('.recurrencia-opciones button').forEach(btn => btn.classList.remove('selected'));
-        document.getElementById('recurrenciaHoy').classList.add('selected');
-        turnoEditandoId = null;
         
-        let [año, mes, dia] = fechaStr.split('-');
-        let fechaObj = new Date(parseInt(año), parseInt(mes)-1, parseInt(dia));
-        actualizarFechaPicker(fechaObj);
-        
-        if (turnoId) {
-            let turno = config.turnos.find(t => t.id === turnoId);
-            if (turno) {
-                document.getElementById('turnoNombre').value = turno.nombre;
-                document.getElementById('turnoInicio').value = turno.inicio;
-                document.getElementById('turnoFin').value = turno.fin;
+        if (!trabajo.jornadas) trabajo.jornadas = [];
+        trabajo.jornadas.unshift(nuevaJornada);
+        jornadaActiva = null;
+        guardarDatos();
+        actualizarUI();
+    }
+
+    // Eliminar jornada
+    function eliminarJornada(trabajoId, jornadaId) {
+        let trabajo = trabajos.find(t => t.id === trabajoId);
+        if (trabajo && trabajo.jornadas) {
+            trabajo.jornadas = trabajo.jornadas.filter(j => j.id !== jornadaId);
+            guardarDatos();
+            actualizarUI();
+            if (document.getElementById('diaModal').style.display === 'flex') {
+                let fecha = document.getElementById('diaModalTitulo').innerText;
+                // Reabrir el modal del día actualizado
             }
         }
-        document.getElementById('turnoModal').style.display = 'flex';
     }
 
-    function abrirModalEditarRegistro(registro) {
-        document.getElementById('turnoModalTitulo').textContent = 'Editar turno';
-        document.getElementById('turnoNombre').value = registro.turnoNombre;
-        document.getElementById('turnoInicio').value = registro.entrada;
-        document.getElementById('turnoFin').value = registro.salida;
-        document.getElementById('descansoCheck').checked = registro.descanso;
-        recurrenciaActual = 'hoy';
-        document.querySelectorAll('.recurrencia-opciones button').forEach(btn => btn.classList.remove('selected'));
-        document.getElementById('recurrenciaHoy').classList.add('selected');
-        turnoEditandoId = registro.id;
+    // Editar jornada
+    function editarJornada(trabajoId, jornada) {
+        jornadaEditando = { ...jornada, trabajoId: trabajoId };
+        let [eH, eM] = jornada.entrada.split(':');
+        let [sH, sM] = jornada.salida.split(':');
         
-        let [año, mes, dia] = registro.fecha.split('-');
-        let fechaObj = new Date(parseInt(año), parseInt(mes)-1, parseInt(dia));
-        actualizarFechaPicker(fechaObj);
-        
-        document.getElementById('turnoModal').style.display = 'flex';
-    }
-
-    function abrirModalTurnoParaEditarEntrada() {
-        if (!turnoActivo) return;
-        document.getElementById('turnoModalTitulo').textContent = 'Modificar hora entrada';
-        document.getElementById('turnoNombre').value = turnoActivo.turnoNombre;
-        document.getElementById('turnoInicio').value = turnoActivo.horaEntrada;
-        document.getElementById('turnoFin').value = '';
-        document.getElementById('descansoCheck').checked = false;
-        document.getElementById('turnoFin').style.display = 'none';
-        document.querySelector('.recurrencia-opciones').style.display = 'none';
-        document.getElementById('cambiarFechaBtn').style.display = 'none';
-        turnoEditandoId = null;
-        
-        let fechaObj = new Date(turnoActivo.fecha);
-        actualizarFechaPicker(fechaObj);
-        
-        document.getElementById('turnoModal').style.display = 'flex';
-    }
-
-    function actualizarFechaPicker(fechaObj) {
-        let dias = Array.from({length: 31}, (_, i) => (i+1).toString().padStart(2,'0'));
-        let años = Array.from({length: 11}, (_, i) => (fechaObj.getFullYear()-5+i).toString());
-        document.getElementById('diaScroll').innerHTML = dias.map(d => `<div class="${parseInt(d) === fechaObj.getDate() ? 'selected' : ''}">${d}</div>`).join('');
-        document.getElementById('mesScroll').innerHTML = MESES.map((m,i) => `<div class="${i === fechaObj.getMonth() ? 'selected' : ''}">${m}</div>`).join('');
-        document.getElementById('añoScroll').innerHTML = años.map(a => `<div class="${a === fechaObj.getFullYear().toString() ? 'selected' : ''}">${a}</div>`).join('');
-        
-        [document.getElementById('diaScroll'), document.getElementById('mesScroll'), document.getElementById('añoScroll')].forEach(scroll => {
-            scroll.querySelectorAll('div').forEach(div => div.onclick = function() {
-                scroll.querySelectorAll('div').forEach(d => d.classList.remove('selected'));
-                this.classList.add('selected');
+        function cargarRuedas() {
+            document.getElementById('entradaHoraScroll').innerHTML = HORAS.map(h => `<div class="${h === eH ? 'selected' : ''}">${h}</div>`).join('');
+            document.getElementById('entradaMinScroll').innerHTML = MINUTOS.map(m => `<div class="${m === eM ? 'selected' : ''}">${m}</div>`).join('');
+            document.getElementById('salidaHoraScroll').innerHTML = HORAS.map(h => `<div class="${h === sH ? 'selected' : ''}">${h}</div>`).join('');
+            document.getElementById('salidaMinScroll').innerHTML = MINUTOS.map(m => `<div class="${m === sM ? 'selected' : ''}">${m}</div>`).join('');
+            
+            [document.getElementById('entradaHoraScroll'), document.getElementById('entradaMinScroll'), 
+             document.getElementById('salidaHoraScroll'), document.getElementById('salidaMinScroll')].forEach(scroll => {
+                scroll.querySelectorAll('div').forEach(div => div.onclick = function() {
+                    scroll.querySelectorAll('div').forEach(d => d.classList.remove('selected'));
+                    this.classList.add('selected');
+                });
             });
-        });
+        }
+        cargarRuedas();
+        document.getElementById('editarDescansoCheck').checked = jornada.descanso;
+        document.getElementById('editarJornadaModal').style.display = 'flex';
     }
 
-    function guardarNuevoTurno() {
-        let nombre = document.getElementById('turnoNombre').value.trim();
-        let inicio = document.getElementById('turnoInicio').value;
-        let fin = document.getElementById('turnoFin').value;
-        let descanso = document.getElementById('descansoCheck').checked;
+    function guardarEdicionJornada() {
+        if (!jornadaEditando) return;
+        let nuevaEntrada = `${document.querySelector('#entradaHoraScroll div.selected')?.textContent || '00'}:${document.querySelector('#entradaMinScroll div.selected')?.textContent || '00'}`;
+        let nuevaSalida = `${document.querySelector('#salidaHoraScroll div.selected')?.textContent || '00'}:${document.querySelector('#salidaMinScroll div.selected')?.textContent || '00'}`;
+        let descanso = document.getElementById('editarDescansoCheck').checked;
         
-        let diaSel = document.querySelector('#diaScroll div.selected')?.textContent || '01';
-        let mesSel = MESES.indexOf(document.querySelector('#mesScroll div.selected')?.textContent);
-        let añoSel = document.querySelector('#añoScroll div.selected')?.textContent;
-        let fecha = `${añoSel}-${(mesSel+1).toString().padStart(2,'0')}-${diaSel.padStart(2,'0')}`;
+        let trabajo = trabajos.find(t => t.id === jornadaEditando.trabajoId);
+        if (!trabajo) return;
         
+        let calculo = calcularJornada(trabajo, nuevaEntrada, nuevaSalida, descanso);
+        let jornadaActualizada = {
+            ...jornadaEditando,
+            entrada: nuevaEntrada,
+            salida: nuevaSalida,
+            descanso: descanso,
+            total: parseFloat(calculo.total),
+            totalPagar: parseFloat(calculo.totalPagar),
+            diurnas: calculo.normalesDiurnas,
+            nocturnas: calculo.normalesNocturnas,
+            extraDiurnas: calculo.extraDiurnas,
+            extraNocturnas: calculo.extraNocturnas
+        };
+        
+        let idx = trabajo.jornadas.findIndex(j => j.id === jornadaEditando.id);
+        if (idx !== -1) trabajo.jornadas[idx] = jornadaActualizada;
+        
+        guardarDatos();
+        actualizarUI();
+        document.getElementById('editarJornadaModal').style.display = 'none';
+        jornadaEditando = null;
+    }
+
+    // CRUD Trabajos
+    function agregarTrabajo() {
+        trabajoEditandoId = null;
+        document.getElementById('editarTrabajoTitulo').textContent = 'Nuevo trabajo';
+        document.getElementById('trabajoNombre').value = '';
+        document.getElementById('trabajoEmoji').value = '🏢';
+        document.getElementById('valorNormal').value = '12';
+        document.getElementById('valorNocturno').value = '15';
+        document.getElementById('valorExtraDiurno').value = '18';
+        document.getElementById('valorExtraNocturno').value = '22';
+        document.getElementById('reglaDescanso').value = 'pago';
+        document.getElementById('jornadaLegal').value = '6';
+        document.getElementById('editarTrabajoModal').style.display = 'flex';
+    }
+
+    function editarTrabajo(trabajo) {
+        trabajoEditandoId = trabajo.id;
+        document.getElementById('editarTrabajoTitulo').textContent = 'Editar trabajo';
+        document.getElementById('trabajoNombre').value = trabajo.nombre;
+        document.getElementById('trabajoEmoji').value = trabajo.emoji || '🏢';
+        document.getElementById('valorNormal').value = trabajo.valorNormal || 12;
+        document.getElementById('valorNocturno').value = trabajo.valorNocturno || 15;
+        document.getElementById('valorExtraDiurno').value = trabajo.valorExtraDiurno || 18;
+        document.getElementById('valorExtraNocturno').value = trabajo.valorExtraNocturno || 22;
+        document.getElementById('reglaDescanso').value = trabajo.reglaDescanso || 'pago';
+        document.getElementById('jornadaLegal').value = trabajo.jornadaLegal || 6;
+        document.getElementById('editarTrabajoModal').style.display = 'flex';
+    }
+
+    function guardarTrabajo() {
+        let nombre = document.getElementById('trabajoNombre').value.trim();
+        let emoji = document.getElementById('trabajoEmoji').value.trim() || '🏢';
         if (!nombre) { alert('Ingresa un nombre'); return; }
-        if (!inicio || !fin) { alert('Ingresa horario'); return; }
         
-        if (turnoEditandoId) {
-            let registro = registros.find(r => r.id === turnoEditandoId);
-            if (registro) {
-                guardarRegistro(registro.turnoId, fecha, inicio, fin, descanso, true, turnoEditandoId);
-                document.getElementById('turnoModal').style.display = 'none';
-                actualizarUI();
+        let trabajo = {
+            id: trabajoEditandoId || Date.now(),
+            nombre: nombre,
+            emoji: emoji,
+            valorNormal: parseFloat(document.getElementById('valorNormal').value) || 0,
+            valorNocturno: parseFloat(document.getElementById('valorNocturno').value) || 0,
+            valorExtraDiurno: parseFloat(document.getElementById('valorExtraDiurno').value) || 0,
+            valorExtraNocturno: parseFloat(document.getElementById('valorExtraNocturno').value) || 0,
+            reglaDescanso: document.getElementById('reglaDescanso').value,
+            jornadaLegal: parseFloat(document.getElementById('jornadaLegal').value) || 6,
+            jornadas: []
+        };
+        
+        if (trabajoEditandoId) {
+            let idx = trabajos.findIndex(t => t.id === trabajoEditandoId);
+            if (idx !== -1) {
+                trabajo.jornadas = trabajos[idx].jornadas || [];
+                trabajos[idx] = trabajo;
             }
-            return;
+        } else {
+            trabajo.jornadas = [];
+            trabajos.push(trabajo);
         }
         
-        let nuevoTurnoId = `temp_${Date.now()}`;
-        let diasSeleccionados = DIAS_SEMANA.map(d => d.id);
-        
-        if (recurrenciaActual === 'hoy') {
-            guardarRegistro(nuevoTurnoId, fecha, inicio, fin, descanso);
-        } else if (recurrenciaActual === 'semana') {
-            let fechaObj = new Date(fecha);
-            let inicioSemana = getInicioSemana(fechaObj);
-            for (let i = 0; i < 7; i++) {
-                let diaFecha = new Date(inicioSemana);
-                diaFecha.setDate(inicioSemana.getDate() + i);
-                let diaId = getDiaIdFromDate(diaFecha);
-                if (diasSeleccionados.includes(diaId)) {
-                    let fechaStr = formatearFechaYMD(diaFecha);
-                    guardarRegistro(nuevoTurnoId, fechaStr, inicio, fin, descanso);
-                }
-            }
-        } else if (recurrenciaActual === 'mes') {
-            let fechaObj = new Date(fecha);
-            let año = fechaObj.getFullYear();
-            let mes = fechaObj.getMonth();
-            let diasEnMes = new Date(año, mes + 1, 0).getDate();
-            for (let d = 1; d <= diasEnMes; d++) {
-                let diaFecha = new Date(año, mes, d);
-                let diaId = getDiaIdFromDate(diaFecha);
-                if (diasSeleccionados.includes(diaId)) {
-                    let fechaStr = formatearFechaYMD(diaFecha);
-                    guardarRegistro(nuevoTurnoId, fechaStr, inicio, fin, descanso);
-                }
-            }
-        }
-        
-        document.getElementById('turnoModal').style.display = 'none';
+        guardarDatos();
         actualizarUI();
+        document.getElementById('editarTrabajoModal').style.display = 'none';
+    }
+
+    function eliminarTrabajo(id) {
+        if (confirm('¿Eliminar este trabajo y todas sus jornadas?')) {
+            trabajos = trabajos.filter(t => t.id !== id);
+            if (jornadaActiva && jornadaActiva.trabajoId === id) jornadaActiva = null;
+            guardarDatos();
+            actualizarUI();
+        }
+    }
+
+    // Calendario
+    function verCalendario(trabajo) {
+        trabajoCalendarioActual = trabajo;
+        currentMonth = new Date();
+        document.getElementById('calendarioTitulo').textContent = `${trabajo.emoji} ${trabajo.nombre}`;
+        renderizarCalendario();
+        document.getElementById('calendarioModal').style.display = 'flex';
     }
 
     function renderizarCalendario() {
+        if (!trabajoCalendarioActual) return;
         let año = currentMonth.getFullYear();
         let mes = currentMonth.getMonth();
         document.getElementById('mesTitulo').textContent = `${MESES[mes]} ${año}`;
@@ -945,124 +783,190 @@
         
         let grid = document.getElementById('calendarioGrid');
         grid.innerHTML = '';
-        
-        for (let i = 0; i < 7; i++) {
-            grid.innerHTML += `<div class="calendario-dia-header">${DIAS_SEMANA[i].abbr}</div>`;
-        }
-        
+        for (let i = 0; i < 7; i++) grid.innerHTML += `<div class="calendario-dia-header">${DIAS_SEMANA[i]}</div>`;
         for (let i = 0; i < ajuste; i++) grid.innerHTML += `<div class="calendario-dia other-month"></div>`;
         
+        let jornadas = trabajoCalendarioActual.jornadas || [];
         for (let d = 1; d <= ultimoDia.getDate(); d++) {
             let fechaStr = `${año}-${(mes+1).toString().padStart(2,'0')}-${d.toString().padStart(2,'0')}`;
-            let registrosDia = registros.filter(r => r.fecha === fechaStr);
-            let tienePendiente = registrosDia.some(r => r.descanso === false);
-            let tieneCompletado = registrosDia.length > 0;
-            let puntoClase = tienePendiente ? 'verde' : (tieneCompletado ? 'verde-claro' : '');
+            let jornadasDia = jornadas.filter(j => j.fecha === fechaStr);
+            let totalHorasDia = jornadasDia.reduce((sum, j) => sum + j.total, 0);
+            let horasText = totalHorasDia > 0 ? `${totalHorasDia.toFixed(1)}h` : '';
             grid.innerHTML += `
                 <div class="calendario-dia" data-fecha="${fechaStr}">
                     <div class="numero">${d}</div>
-                    <div class="punto ${puntoClase}"></div>
+                    <div class="horas">${horasText}</div>
                 </div>
             `;
         }
         
         document.querySelectorAll('.calendario-dia[data-fecha]').forEach(el => {
-            el.onclick = () => {
-                document.getElementById('calendarioModal').style.display = 'none';
-                abrirModalDia(el.dataset.fecha);
-            };
+            el.onclick = () => abrirModalDia(el.dataset.fecha);
         });
     }
 
     function abrirModalDia(fechaStr) {
+        if (!trabajoCalendarioActual) return;
         let fecha = new Date(fechaStr);
-        let diaSemanaIdx = fecha.getDay();
-        let nombreDia = DIAS_SEMANA[diaSemanaIdx === 0 ? 6 : diaSemanaIdx - 1].nombre;
-        document.getElementById('diaModalTitulo').textContent = `${nombreDia} ${fecha.getDate()} ${MESES[fecha.getMonth()]} ${fecha.getFullYear()}`;
-        let turnosDia = registros.filter(r => r.fecha === fechaStr);
-        let lista = document.getElementById('turnosDiaLista');
+        document.getElementById('diaModalTitulo').textContent = `${DIAS_SEMANA[fecha.getDay() === 0 ? 6 : fecha.getDay()-1]} ${fecha.getDate()} ${MESES[fecha.getMonth()]} ${fecha.getFullYear()}`;
+        let jornadasDia = (trabajoCalendarioActual.jornadas || []).filter(j => j.fecha === fechaStr);
+        let lista = document.getElementById('jornadasDiaLista');
         lista.innerHTML = '';
-        if (turnosDia.length === 0) {
-            lista.innerHTML = '<div style="color:#a0a0a0; text-align:center; padding:20px;">No hay turnos este día</div>';
+        if (jornadasDia.length === 0) {
+            lista.innerHTML = '<div style="color:#a0a0a0; text-align:center; padding:20px;">No hay jornadas este día</div>';
         } else {
-            turnosDia.forEach(t => {
-                let extras = (t.extraDiurnas+t.extraNocturnas) > 0 ? ` (+${(t.extraDiurnas+t.extraNocturnas).toFixed(1)} extra)` : '';
+            jornadasDia.forEach(j => {
                 let div = document.createElement('div');
-                div.className = 'turno-dia-item';
+                div.className = 'jornada-item';
                 div.innerHTML = `
-                    <div>
-                        <strong>${t.turnoNombre}</strong><br>
-                        ${t.entrada} - ${t.salida} ${t.descanso ? '🍽️' : ''}<br>
-                        <span style="color:#2ecc71">${t.total.toFixed(1)}h${extras}</span>
+                    <div class="jornada-info">
+                        <div class="jornada-fecha">${j.entrada} - ${j.salida} ${j.descanso ? '🍽️' : ''}</div>
+                        <div class="jornada-horas">${j.total}h - ${j.totalPagar}€</div>
                     </div>
-                    <button class="btn-eliminar-turno" data-id="${t.id}">🗑️</button>
+                    <div class="jornada-actions">
+                        <button class="btn-icon btn-editar" data-id="${j.id}">✏️</button>
+                        <button class="btn-icon btn-eliminar" data-id="${j.id}">🗑️</button>
+                    </div>
                 `;
                 lista.appendChild(div);
             });
         }
-        document.querySelectorAll('.btn-eliminar-turno').forEach(btn => {
-            btn.onclick = () => { eliminarRegistro(parseInt(btn.dataset.id)); abrirModalDia(fechaStr); };
+        document.querySelectorAll('.btn-editar').forEach(btn => {
+            let jornada = jornadasDia.find(j => j.id === parseInt(btn.dataset.id));
+            if (jornada) btn.onclick = () => editarJornada(trabajoCalendarioActual.id, jornada);
         });
-        document.getElementById('agregarTurnoDiaBtn').onclick = () => {
+        document.querySelectorAll('.btn-eliminar').forEach(btn => {
+            btn.onclick = () => eliminarJornada(trabajoCalendarioActual.id, parseInt(btn.dataset.id));
+        });
+        document.getElementById('agregarJornadaDiaBtn').onclick = () => {
             document.getElementById('diaModal').style.display = 'none';
-            abrirModalNuevoTurno(fechaStr);
+            // Abrir modal para agregar jornada manual
+            alert('Funcionalidad: agregar jornada manual a ' + fechaStr);
         };
         document.getElementById('diaModal').style.display = 'flex';
     }
 
+    // UI Principal
+    function actualizarUI() {
+        let ahora = new Date();
+        document.getElementById('horaActual').textContent = ahora.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit', second:'2-digit' });
+        document.getElementById('fechaActual').textContent = ahora.toLocaleDateString('es-ES', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+        
+        let activoContainer = document.getElementById('jornadaActivaContainer');
+        if (jornadaActiva) {
+            let diff = Date.now() - jornadaActiva.timestamp;
+            let horas = Math.floor(diff/3600000);
+            let minutos = Math.floor((diff%3600000)/60000);
+            let segundos = Math.floor((diff%60000)/1000);
+            activoContainer.innerHTML = `
+                <div class="jornada-activa-card">
+                    <div class="trabajo-nombre">${jornadaActiva.trabajoEmoji} ${jornadaActiva.trabajoNombre}</div>
+                    <div class="tiempo-transcurrido">${horas.toString().padStart(2,'0')}:${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2,'0')}</div>
+                    <div class="descanso-check"><input type="checkbox" id="descansoActivoCheck"><label>Realicé media hora de descanso</label></div>
+                    <div><button class="btn-modificar-hora" id="modificarEntradaBtn">📝 Modificar hora entrada</button></div>
+                    <div><button class="btn-finalizar" id="finalizarActivoBtn">🏁 Finalizar jornada</button></div>
+                </div>
+            `;
+            let descansoCheck = document.getElementById('descansoActivoCheck');
+            if (descansoCheck) descansoCheck.addEventListener('change', (e) => descansoActual = e.target.checked);
+            document.getElementById('modificarEntradaBtn')?.addEventListener('click', () => alert('Modificar hora entrada - Próximamente'));
+            document.getElementById('finalizarActivoBtn')?.addEventListener('click', () => finalizarJornada());
+        } else {
+            activoContainer.innerHTML = '';
+        }
+        
+        let container = document.getElementById('trabajosContainer');
+        if (trabajos.length === 0) {
+            container.innerHTML = `
+                <div class="mensaje-vacio">
+                    <p>👋 ¡Bienvenido!</p>
+                    <p>No tienes trabajos registrados.</p>
+                    <button class="btn-primario" id="btnAgregarPrimerTrabajo">+ Agregar mi primer trabajo</button>
+                </div>
+            `;
+            document.getElementById('btnAgregarPrimerTrabajo')?.addEventListener('click', agregarTrabajo);
+        } else {
+            container.innerHTML = '';
+            trabajos.forEach(trabajo => {
+                let card = document.createElement('div');
+                card.className = 'trabajo-card';
+                card.innerHTML = `
+                    <div class="trabajo-info">
+                        <div class="trabajo-emoji">${trabajo.emoji || '🏢'}</div>
+                        <div class="trabajo-nombre">${trabajo.nombre}</div>
+                    </div>
+                    <div class="trabajo-actions">
+                        <button class="btn-trabajo calendario" data-id="${trabajo.id}" data-accion="calendario">📅</button>
+                        <button class="btn-trabajo entrar" data-id="${trabajo.id}" data-accion="entrar">▶ ENTRAR</button>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            document.querySelectorAll('.btn-trabajo').forEach(btn => {
+                let trabajoId = parseInt(btn.dataset.id);
+                let accion = btn.dataset.accion;
+                btn.onclick = () => {
+                    let trabajo = trabajos.find(t => t.id === trabajoId);
+                    if (accion === 'entrar') iniciarJornada(trabajoId);
+                    else if (accion === 'calendario') verCalendario(trabajo);
+                };
+            });
+        }
+        
+        // Configuración lista
+        let configLista = document.getElementById('trabajosConfigLista');
+        if (configLista) {
+            configLista.innerHTML = '';
+            trabajos.forEach(trabajo => {
+                let totalHorasMes = (trabajo.jornadas || []).reduce((sum, j) => sum + j.total, 0);
+                let totalPagarMes = (trabajo.jornadas || []).reduce((sum, j) => sum + j.totalPagar, 0);
+                let div = document.createElement('div');
+                div.className = 'trabajo-config-item';
+                div.innerHTML = `
+                    <div class="trabajo-config-info">
+                        <div class="nombre">${trabajo.emoji || '🏢'} ${trabajo.nombre}</div>
+                        <div class="stats">📊 ${totalHorasMes.toFixed(1)}h - ${totalPagarMes.toFixed(2)}€ este mes</div>
+                    </div>
+                    <div class="trabajo-config-actions">
+                        <button class="config-icon" data-id="${trabajo.id}" data-accion="calendario">📅</button>
+                        <button class="config-icon" data-id="${trabajo.id}" data-accion="editar">✏️</button>
+                        <button class="config-icon" data-id="${trabajo.id}" data-accion="eliminar">🗑️</button>
+                    </div>
+                `;
+                configLista.appendChild(div);
+            });
+            document.querySelectorAll('#trabajosConfigLista .config-icon').forEach(btn => {
+                let trabajoId = parseInt(btn.dataset.id);
+                let accion = btn.dataset.accion;
+                let trabajo = trabajos.find(t => t.id === trabajoId);
+                btn.onclick = () => {
+                    if (accion === 'editar') editarTrabajo(trabajo);
+                    else if (accion === 'eliminar') eliminarTrabajo(trabajoId);
+                    else if (accion === 'calendario') verCalendario(trabajo);
+                };
+            });
+        }
+    }
+
+    // Inicializar
     function init() {
         cargarDatos();
         setInterval(() => actualizarUI(), 1000);
         
-        document.getElementById('statsBtn').onclick = () => alert('Estadísticas próximamente');
-        document.getElementById('configBtn').onclick = () => alert('Configuración próximamente');
-        document.getElementById('prevWeekBtn').onclick = () => { semanaOffset--; actualizarUI(); };
-        document.getElementById('nextWeekBtn').onclick = () => { semanaOffset++; actualizarUI(); };
-        document.getElementById('calendarioBtn').onclick = () => { renderizarCalendario(); document.getElementById('calendarioModal').style.display = 'flex'; };
-        document.getElementById('agregarBtn').onclick = () => abrirModalNuevoTurno(formatearFechaYMD(new Date()));
-        
+        document.getElementById('configBtn').onclick = () => document.getElementById('configModal').style.display = 'flex';
+        document.getElementById('closeConfigBtn').onclick = () => document.getElementById('configModal').style.display = 'none';
+        document.getElementById('agregarTrabajoBtn').onclick = agregarTrabajo;
+        document.getElementById('closeEditarTrabajoBtn').onclick = () => document.getElementById('editarTrabajoModal').style.display = 'none';
+        document.getElementById('cancelarEditarTrabajoBtn').onclick = () => document.getElementById('editarTrabajoModal').style.display = 'none';
+        document.getElementById('guardarEditarTrabajoBtn').onclick = guardarTrabajo;
         document.getElementById('closeCalendarioBtn').onclick = () => document.getElementById('calendarioModal').style.display = 'none';
-        document.getElementById('closeDiaBtn').onclick = () => document.getElementById('diaModal').style.display = 'none';
-        document.getElementById('cancelarTurnoModalBtn').onclick = () => document.getElementById('turnoModal').style.display = 'none';
-        document.getElementById('guardarTurnoBtn').onclick = guardarNuevoTurno;
+        document.getElementById('cerrarCalendarioBtn').onclick = () => document.getElementById('calendarioModal').style.display = 'none';
         document.getElementById('prevMonthBtn').onclick = () => { currentMonth.setMonth(currentMonth.getMonth()-1); renderizarCalendario(); };
         document.getElementById('nextMonthBtn').onclick = () => { currentMonth.setMonth(currentMonth.getMonth()+1); renderizarCalendario(); };
-        document.getElementById('cambiarFechaBtn').onclick = () => {
-            let container = document.getElementById('fechaPickerContainer');
-            container.style.display = container.style.display === 'none' ? 'flex' : 'none';
-        };
-        
-        document.getElementById('recurrenciaHoy').onclick = function() { recurrenciaActual='hoy'; document.querySelectorAll('.recurrencia-opciones button').forEach(b=>b.classList.remove('selected')); this.classList.add('selected'); };
-        document.getElementById('recurrenciaSemana').onclick = function() { recurrenciaActual='semana'; document.querySelectorAll('.recurrencia-opciones button').forEach(b=>b.classList.remove('selected')); this.classList.add('selected'); };
-        document.getElementById('recurrenciaMes').onclick = function() { recurrenciaActual='mes'; document.querySelectorAll('.recurrencia-opciones button').forEach(b=>b.classList.remove('selected')); this.classList.add('selected'); };
-        
-        let diasGrid = document.getElementById('diasSemanaGrid');
-        DIAS_SEMANA.forEach(dia => {
-            let div = document.createElement('div');
-            div.className = 'dia-checkbox';
-            div.innerHTML = `<input type="checkbox" id="dia_${dia.id}" checked><label>${dia.abbr}</label>`;
-            diasGrid.appendChild(div);
-        });
-        
-        document.getElementById('limpiarAntiguosBtn').onclick = () => {
-            let hoy = new Date();
-            let fechaDefecto = `${hoy.getFullYear()}-${(hoy.getMonth()+1).toString().padStart(2,'0')}-01`;
-            document.getElementById('fechaLimite').value = fechaDefecto;
-            document.getElementById('limpiarModal').style.display = 'flex';
-        };
-        document.getElementById('cancelarLimpiarBtn').onclick = () => document.getElementById('limpiarModal').style.display = 'none';
-        document.getElementById('confirmarLimpiarBtn').onclick = () => {
-            let fecha = document.getElementById('fechaLimite').value;
-            if (fecha) {
-                if (confirm(`¿Eliminar todos los turnos anteriores a ${fecha}?`)) {
-                    limpiarTurnosAntiguos(fecha);
-                    document.getElementById('limpiarModal').style.display = 'none';
-                    if (document.getElementById('calendarioModal').style.display === 'flex') {
-                        renderizarCalendario();
-                    }
-                }
-            }
-        };
+        document.getElementById('closeDiaBtn').onclick = () => document.getElementById('diaModal').style.display = 'none';
+        document.getElementById('closeEditarJornadaBtn').onclick = () => document.getElementById('editarJornadaModal').style.display = 'none';
+        document.getElementById('cancelarEditarJornadaBtn').onclick = () => document.getElementById('editarJornadaModal').style.display = 'none';
+        document.getElementById('guardarEditarJornadaBtn').onclick = guardarEdicionJornada;
     }
     
     init();
