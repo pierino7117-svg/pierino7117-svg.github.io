@@ -85,9 +85,6 @@
             align-items: center;
             gap: 12px;
         }
-        .trabajo-emoji {
-            font-size: 32px;
-        }
         .trabajo-nombre {
             font-size: 16px;
             font-weight: 600;
@@ -173,7 +170,7 @@
             cursor: pointer;
         }
 
-        /* Modales - mismo margen superior */
+        /* Modales */
         .modal {
             display: none;
             position: fixed;
@@ -407,23 +404,22 @@
     </div>
 </div>
 
-<!-- Modal Editar Trabajo -->
+<!-- Modal Editar Trabajo (sin emoji, valores en 0) -->
 <div class="modal" id="editarTrabajoModal">
     <div class="modal-content">
         <div class="modal-header">
             <button class="back-btn" id="closeEditarTrabajoBtn">←</button>
-            <h3 id="editarTrabajoTitulo">Editar trabajo</h3>
+            <h3 id="editarTrabajoTitulo">Nuevo trabajo</h3>
             <div style="width: 44px;"></div>
         </div>
         <input type="text" id="trabajoNombre" placeholder="Nombre del trabajo">
-        <input type="text" id="trabajoEmoji" placeholder="Emoji (ej: 🏢, 🏭, 🏪)" maxlength="2">
         
-        <h4 style="color:white; margin:15px 0 10px;">💰 Valores por hora</h4>
+        <h4 style="color:white; margin:15px 0 10px;">💰 Valores por hora ($)</h4>
         <div class="valores-grid">
-            <div class="valor-item"><label>Hora normal (€)</label><input type="number" id="valorNormal" step="0.01"></div>
-            <div class="valor-item"><label>Hora nocturna (€)</label><input type="number" id="valorNocturno" step="0.01"></div>
-            <div class="valor-item"><label>Extra diurna (€)</label><input type="number" id="valorExtraDiurno" step="0.01"></div>
-            <div class="valor-item"><label>Extra nocturna (€)</label><input type="number" id="valorExtraNocturno" step="0.01"></div>
+            <div class="valor-item"><label>Hora normal ($)</label><input type="number" id="valorNormal" step="0.01" value="0"></div>
+            <div class="valor-item"><label>Hora nocturna ($)</label><input type="number" id="valorNocturno" step="0.01" value="0"></div>
+            <div class="valor-item"><label>Extra diurna ($)</label><input type="number" id="valorExtraDiurno" step="0.01" value="0"></div>
+            <div class="valor-item"><label>Extra nocturna ($)</label><input type="number" id="valorExtraNocturno" step="0.01" value="0"></div>
         </div>
         
         <h4 style="color:white; margin:15px 0 10px;">⚙️ Reglas</h4>
@@ -431,7 +427,7 @@
             <option value="pago">Descanso pagado (no marcar = +0.5h extra)</option>
             <option value="no_pago">Descanso no pagado (marcar = -0.5h)</option>
         </select>
-        <input type="number" id="jornadaLegal" step="0.5" placeholder="Jornada legal (horas)" value="6">
+        <input type="number" id="jornadaLegal" step="0.5" placeholder="Horas jornada legal" value="0">
         
         <div class="modal-buttons">
             <button class="btn-cancelar" id="cancelarEditarTrabajoBtn">Cancelar</button>
@@ -515,11 +511,11 @@
 
     // Guardar y cargar datos
     function guardarDatos() {
-        localStorage.setItem('controlLaboralV21', JSON.stringify({ trabajos, jornadaActiva }));
+        localStorage.setItem('controlLaboralV22', JSON.stringify({ trabajos, jornadaActiva }));
     }
 
     function cargarDatos() {
-        let saved = localStorage.getItem('controlLaboralV21');
+        let saved = localStorage.getItem('controlLaboralV22');
         if (saved) {
             let data = JSON.parse(saved);
             trabajos = data.trabajos || [];
@@ -556,8 +552,8 @@
             if (descanso) total -= 0.5;
         }
         
-        let jornadaLegal = trabajo.jornadaLegal || 6;
-        if (total > jornadaLegal) {
+        let jornadaLegal = trabajo.jornadaLegal || 0;
+        if (jornadaLegal > 0 && total > jornadaLegal) {
             let extra = total - jornadaLegal;
             let propDiurna = diurnas / (diurnas + nocturnas) || 0;
             extraDiurnas = extra * propDiurna;
@@ -566,10 +562,10 @@
             normalesNocturnas = nocturnas - extraNocturnas;
         }
         
-        let totalPagar = (normalesDiurnas * (trabajo.valorNormal || 12)) +
-                         (normalesNocturnas * (trabajo.valorNocturno || 15)) +
-                         (extraDiurnas * (trabajo.valorExtraDiurno || 18)) +
-                         (extraNocturnas * (trabajo.valorExtraNocturno || 22));
+        let totalPagar = (normalesDiurnas * (trabajo.valorNormal || 0)) +
+                         (normalesNocturnas * (trabajo.valorNocturno || 0)) +
+                         (extraDiurnas * (trabajo.valorExtraDiurno || 0)) +
+                         (extraNocturnas * (trabajo.valorExtraNocturno || 0));
         
         return { total: total.toFixed(1), totalPagar: totalPagar.toFixed(2), normalesDiurnas, normalesNocturnas, extraDiurnas, extraNocturnas };
     }
@@ -582,7 +578,6 @@
         jornadaActiva = {
             trabajoId: trabajoId,
             trabajoNombre: trabajo.nombre,
-            trabajoEmoji: trabajo.emoji,
             horaEntrada: ahora.toLocaleTimeString('es-ES', { hour:'2-digit', minute:'2-digit' }),
             fecha: ahora.toISOString().split('T')[0],
             timestamp: ahora.getTime()
@@ -629,10 +624,6 @@
             trabajo.jornadas = trabajo.jornadas.filter(j => j.id !== jornadaId);
             guardarDatos();
             actualizarUI();
-            if (document.getElementById('diaModal').style.display === 'flex') {
-                let fecha = document.getElementById('diaModalTitulo').innerText;
-                // Reabrir el modal del día actualizado
-            }
         }
     }
 
@@ -693,18 +684,17 @@
         jornadaEditando = null;
     }
 
-    // CRUD Trabajos
+    // CRUD Trabajos (sin emoji)
     function agregarTrabajo() {
         trabajoEditandoId = null;
         document.getElementById('editarTrabajoTitulo').textContent = 'Nuevo trabajo';
         document.getElementById('trabajoNombre').value = '';
-        document.getElementById('trabajoEmoji').value = '🏢';
-        document.getElementById('valorNormal').value = '12';
-        document.getElementById('valorNocturno').value = '15';
-        document.getElementById('valorExtraDiurno').value = '18';
-        document.getElementById('valorExtraNocturno').value = '22';
+        document.getElementById('valorNormal').value = '0';
+        document.getElementById('valorNocturno').value = '0';
+        document.getElementById('valorExtraDiurno').value = '0';
+        document.getElementById('valorExtraNocturno').value = '0';
         document.getElementById('reglaDescanso').value = 'pago';
-        document.getElementById('jornadaLegal').value = '6';
+        document.getElementById('jornadaLegal').value = '0';
         document.getElementById('editarTrabajoModal').style.display = 'flex';
     }
 
@@ -712,31 +702,28 @@
         trabajoEditandoId = trabajo.id;
         document.getElementById('editarTrabajoTitulo').textContent = 'Editar trabajo';
         document.getElementById('trabajoNombre').value = trabajo.nombre;
-        document.getElementById('trabajoEmoji').value = trabajo.emoji || '🏢';
-        document.getElementById('valorNormal').value = trabajo.valorNormal || 12;
-        document.getElementById('valorNocturno').value = trabajo.valorNocturno || 15;
-        document.getElementById('valorExtraDiurno').value = trabajo.valorExtraDiurno || 18;
-        document.getElementById('valorExtraNocturno').value = trabajo.valorExtraNocturno || 22;
+        document.getElementById('valorNormal').value = trabajo.valorNormal || 0;
+        document.getElementById('valorNocturno').value = trabajo.valorNocturno || 0;
+        document.getElementById('valorExtraDiurno').value = trabajo.valorExtraDiurno || 0;
+        document.getElementById('valorExtraNocturno').value = trabajo.valorExtraNocturno || 0;
         document.getElementById('reglaDescanso').value = trabajo.reglaDescanso || 'pago';
-        document.getElementById('jornadaLegal').value = trabajo.jornadaLegal || 6;
+        document.getElementById('jornadaLegal').value = trabajo.jornadaLegal || 0;
         document.getElementById('editarTrabajoModal').style.display = 'flex';
     }
 
     function guardarTrabajo() {
         let nombre = document.getElementById('trabajoNombre').value.trim();
-        let emoji = document.getElementById('trabajoEmoji').value.trim() || '🏢';
         if (!nombre) { alert('Ingresa un nombre'); return; }
         
         let trabajo = {
             id: trabajoEditandoId || Date.now(),
             nombre: nombre,
-            emoji: emoji,
             valorNormal: parseFloat(document.getElementById('valorNormal').value) || 0,
             valorNocturno: parseFloat(document.getElementById('valorNocturno').value) || 0,
             valorExtraDiurno: parseFloat(document.getElementById('valorExtraDiurno').value) || 0,
             valorExtraNocturno: parseFloat(document.getElementById('valorExtraNocturno').value) || 0,
             reglaDescanso: document.getElementById('reglaDescanso').value,
-            jornadaLegal: parseFloat(document.getElementById('jornadaLegal').value) || 6,
+            jornadaLegal: parseFloat(document.getElementById('jornadaLegal').value) || 0,
             jornadas: []
         };
         
@@ -770,7 +757,7 @@
     function verCalendario(trabajo) {
         trabajoCalendarioActual = trabajo;
         currentMonth = new Date();
-        document.getElementById('calendarioTitulo').textContent = `${trabajo.emoji} ${trabajo.nombre}`;
+        document.getElementById('calendarioTitulo').textContent = trabajo.nombre;
         renderizarCalendario();
         document.getElementById('calendarioModal').style.display = 'flex';
     }
@@ -813,7 +800,9 @@
     function abrirModalDia(fechaStr) {
         if (!trabajoCalendarioActual) return;
         let fecha = new Date(fechaStr);
-        document.getElementById('diaModalTitulo').textContent = `${DIAS_SEMANA[fecha.getDay() === 0 ? 6 : fecha.getDay()-1]} ${fecha.getDate()} ${MESES[fecha.getMonth()]} ${fecha.getFullYear()}`;
+        let diaSemanaIdx = fecha.getDay();
+        let nombreDia = DIAS_SEMANA[diaSemanaIdx === 0 ? 6 : diaSemanaIdx - 1];
+        document.getElementById('diaModalTitulo').textContent = `${nombreDia} ${fecha.getDate()} ${MESES[fecha.getMonth()]} ${fecha.getFullYear()}`;
         let jornadasDia = (trabajoCalendarioActual.jornadas || []).filter(j => j.fecha === fechaStr);
         let lista = document.getElementById('jornadasDiaLista');
         lista.innerHTML = '';
@@ -826,7 +815,7 @@
                 div.innerHTML = `
                     <div class="jornada-info">
                         <div class="jornada-fecha">${j.entrada} - ${j.salida} ${j.descanso ? '🍽️' : ''}</div>
-                        <div class="jornada-horas">${j.total}h - ${j.totalPagar}€</div>
+                        <div class="jornada-horas">${j.total}h - $${j.totalPagar}</div>
                     </div>
                     <div class="jornada-actions">
                         <button class="btn-icon btn-editar" data-id="${j.id}">✏️</button>
@@ -864,7 +853,7 @@
             let segundos = Math.floor((diff%60000)/1000);
             activoContainer.innerHTML = `
                 <div class="jornada-activa-card">
-                    <div class="trabajo-nombre">${jornadaActiva.trabajoEmoji} ${jornadaActiva.trabajoNombre}</div>
+                    <div class="trabajo-nombre">${jornadaActiva.trabajoNombre}</div>
                     <div class="tiempo-transcurrido">${horas.toString().padStart(2,'0')}:${minutos.toString().padStart(2,'0')}:${segundos.toString().padStart(2,'0')}</div>
                     <div class="descanso-check"><input type="checkbox" id="descansoActivoCheck"><label>Realicé media hora de descanso</label></div>
                     <div><button class="btn-modificar-hora" id="modificarEntradaBtn">📝 Modificar hora entrada</button></div>
@@ -896,7 +885,6 @@
                 card.className = 'trabajo-card';
                 card.innerHTML = `
                     <div class="trabajo-info">
-                        <div class="trabajo-emoji">${trabajo.emoji || '🏢'}</div>
                         <div class="trabajo-nombre">${trabajo.nombre}</div>
                     </div>
                     <div class="trabajo-actions">
@@ -928,8 +916,8 @@
                 div.className = 'trabajo-config-item';
                 div.innerHTML = `
                     <div class="trabajo-config-info">
-                        <div class="nombre">${trabajo.emoji || '🏢'} ${trabajo.nombre}</div>
-                        <div class="stats">📊 ${totalHorasMes.toFixed(1)}h - ${totalPagarMes.toFixed(2)}€ este mes</div>
+                        <div class="nombre">${trabajo.nombre}</div>
+                        <div class="stats">📊 ${totalHorasMes.toFixed(1)}h - $${totalPagarMes.toFixed(2)} este mes</div>
                     </div>
                     <div class="trabajo-config-actions">
                         <button class="config-icon" data-id="${trabajo.id}" data-accion="calendario">📅</button>
